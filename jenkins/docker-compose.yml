@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  jenkins:
+    image: jenkinsci/blueocean
+    container_name: jenkins
+    user: root
+    ports:
+      - 9080:8080
+    volumes:
+      - jenkins_home:/var/jenkins_home
+volumes: 
+  jenkins_home:
