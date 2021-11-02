@@ -2,7 +2,7 @@ version: '3'
 
 services: 
   sonarqube:
-    image: sonarqube:8.6.0-community
+    image: sonarqube
     ports: 
       - "9000:9000"
     networks: 
@@ -16,11 +16,15 @@ services:
       - sonarqube_data:/opt/sonarqube/data
       - sonarqube_extensions:/opt/sonarqube/extensions
       - sonarqube_temp:/opt/sonarqube/temo
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
     depends_on: 
       - db_sonar
 
   db_sonar:
-    image: postgres:9.6
+    image: postgres
     networks:
       - sonarnet
     environment: 

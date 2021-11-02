@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  mysql:
+    image: mysql:8.0.2
+    container_name: mysql_ecm_test
+    ports:
+      - 3307:3306
+      - 33070:33060
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: ecm
+      MYSQL_USER: ecm
+      MYSQL_PASSWORD: ecm
+    volumes:
+      - db_data:/var/lib/mysql
+volumes:
+  db_data:
+    driver: local
